@@ -120,3 +120,10 @@ export async function login({ email, password }: LoginForm) {
 
   return createUserSession(user.id, "/");
 }
+
+export const getOtherUsers = async (userId: string) => {
+  return prisma.user.findMany({
+    where: { id: { not: userId } },
+    orderBy: { profile: { firstName: "asc" } },
+  });
+};
