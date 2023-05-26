@@ -17,3 +17,7 @@ export const createUser = async (user: RegistrationForm) => {
 
   return { id: newUser.id, email: user.email };
 };
+
+export const getUserById = async (userId: string | undefined) => {
+  return await prisma.user.findUnique({ where: { id: userId } });
+};
